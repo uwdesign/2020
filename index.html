@@ -59,12 +59,14 @@ return lottie;
         renderer: 'svg',
         loop: true,
         autoplay: true,
+	
         animationData: animationData
     };
 
     var anim;
-
+	
     anim = lottie.loadAnimation(params);
+	anim.setSpeed(0.1);
 
 </script>
 </body>
