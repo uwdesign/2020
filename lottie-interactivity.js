@@ -192,7 +192,7 @@ class LottieInteractivity {
   };
 }
 
-export const create = options => {
+const create = options => {
   const instance = new LottieInteractivity(options);
   instance.start();
 
