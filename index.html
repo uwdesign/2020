@@ -6,8 +6,9 @@
         body {
             background-color: #fff;
             margin: 0px;
-            height: 100%;
+            height: 2500vh;
         }
+
         #vtt_main {
             background-color: #fff;
             width: 100%;
@@ -20,24 +21,26 @@
         }
     </style>
 </head>
-<body>
+
+<body id="scroll_target">
 
     <lottie-player id="vtt_main" src="https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json">
     </lottie-player>
 
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://thipokch.github.io/2020-VisualTelephoneTag/lottie-interactivity.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
         LottieInteractivity.create({
             player: "#vtt_main",
-            mode: 'cursor',
-            container: 'body',
+            mode: 'scroll',
+            container: '#scroll_target',
             actions: [{
-                position:  { x: [0, 1], y: [0, 1] },
-                type: 'seek',
-                frames: [0, 1200],
+                visibility: [0, 1],
+                type: "seek",
+                frames: [-50, 1250]
             }]
         });
     </script>
 </body>
+
 </html>
