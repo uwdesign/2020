@@ -43,7 +43,7 @@
             container: document.getElementById('vtt_main'),
             renderer: 'svg',
             autoplay: false,
-            assetsPath: 'https://images.weserv.nl/?&w=500&url=https://thipokch.github.io/2020-VisualTelephoneTag/images/',
+            assetsPath: 'https://images.weserv.nl/?&w=' + Math.ceil(window.innerWidth / 1500) * 500+ '&url=https://thipokch.github.io/2020-VisualTelephoneTag/images-border/',
             path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json'
         })
     </script>
