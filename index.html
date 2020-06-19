@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+
+<head>
+    <style>
+        body {
+            background-color: #fff;
+            margin: 0px;
+            height: 100%;
+        }
+        #vtt_main {
+            background-color: #fff;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <lottie-player id="vtt_main" src="https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json">
+    </lottie-player>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://thipokch.github.io/2020-VisualTelephoneTag/lottie-interactivity.js"></script>
+    <script>
+        LottieInteractivity.create({
+            player: "#vtt_main",
+            mode: 'cursor',
+            container: 'body',
+            actions: [{
+                position:  { x: [0, 1], y: [0, 1] },
+                type: 'seek',
+                frames: [0, 1200],
+            }]
+        });
+    </script>
+</body>
+</html>
