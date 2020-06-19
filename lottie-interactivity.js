@@ -51,6 +51,7 @@ export class LottieInteractivity {
     // Calculate current view percentage
     const current = window.innerHeight - top;
     const max = window.innerHeight + height;
+    console.log(current / max)
     return current / max;
   }
 
