@@ -7,7 +7,7 @@ const ERROR_PREFIX = '[lottieInteractivity]:';
 /**
  * LottieFiles interactivity for Lottie
  */
-export class LottieInteractivity {
+class LottieInteractivity {
   constructor({ actions, container, mode, player, ...options } = DEFAULT_OPTIONS) {
     // Resolve lottie instance specified in player option
     if (!(typeof player === 'object' && player.constructor.name === 'AnimationItem')) {
