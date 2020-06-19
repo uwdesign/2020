@@ -198,5 +198,3 @@ const create = options => {
 
   return instance;
 };
-
-export default create;
