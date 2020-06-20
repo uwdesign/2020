@@ -9,30 +9,13 @@
             height: 2500vh;
         }
 
-        #vtt_main {
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            position: fixed;
-            transform: translate3d(0, 0, 0);
-            opacity: 1;
-        }
-
-        #vtt_bg {
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            position: fixed;
-            transform: translate3d(0, 0, 0);
-            opacity: 1;
-        }
-
+        #vtt_main,
+        #vtt_bg,
         #vtt_eyes {
             width: 100%;
+            height: 100%;
             left: 0;
-            bottom: 0;
+            top: 0;
             position: fixed;
             transform: translate3d(0, 0, 0);
             opacity: 1;
@@ -47,7 +30,7 @@
             opacity: 1;
         }
 
-        #vtt_eyes > svg {
+        #vtt_eyes>svg {
             height: auto !important;
         }
     </style>
@@ -60,70 +43,74 @@
     <div id="vtt_scroll"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie_light.min.js"></script>
     <script>
-        var vttbg = bodymovin.loadAnimation({
-            container: document.getElementById('vtt_bg'),
+        const vttConfig = {
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid meet'
+            },
             renderer: 'svg',
             autoplay: false,
+        }
+        var vttbg = bodymovin.loadAnimation({
+            ...vttConfig,
+            container: document.getElementById('vtt_bg'),
             path: './vtt_bg.json',
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMid slice'
             }
         })
         var vttmain = bodymovin.loadAnimation({
+            ...vttConfig,
             container: document.getElementById('vtt_main'),
-            renderer: 'svg',
-            autoplay: false,
             assetsPath: 'https://images.weserv.nl/?fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
                 '&h=' + Math.ceil(window.innerWidth / 1350) * 600 +
                 '&url=https://uwdesign.github.io/2020-VisualTelephoneTag/images-border/',
             path: './vtt_main.json',
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMid meet'
-            }
         })
         var vtteyes = bodymovin.loadAnimation({
+            ...vttConfig,
             container: document.getElementById('vtt_eyes'),
-            autoplay: false,
-            renderer: 'svg',
-            path: './vtt_scroll.json'
+            path: './vtt_eyes.json',
+            rendererSettings: {
+                preserveAspectRatio: 'xMaxYMid meet'
+            }
         })
         var vttscroll = bodymovin.loadAnimation({
+            ...vttConfig,
             container: document.getElementById('vtt_scroll'),
-            autoplay: false,
-            renderer: 'svg',
             path: './vtt_scroll.json'
         })
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
-        var vttAction = [{
-                visibility: [0, 0.04],
-                type: "loop",
-                frames: [10, 35]
-            },
-            {
-                visibility: [0.04, 1],
-                type: "seek",
-                frames: [35, 1250]
-            }
-        ]
-        LottieInteractivity.create({
-            player: vttbg,
+        const vttIConfig = {
             mode: 'scroll',
             container: '#scroll_target',
-            actions: vttAction
+            actions: [{
+                    visibility: [0, 0.04],
+                    type: "loop",
+                    frames: [10, 35]
+                },
+                {
+                    visibility: [0.04, 1],
+                    type: "seek",
+                    frames: [35, 1250]
+                }
+            ]
+        }
+
+        LottieInteractivity.create({
+            ...vttIConfig, 
+            player: vttbg 
         });
 
         LottieInteractivity.create({
-            player: vttmain,
-            mode: 'scroll',
-            container: '#scroll_target',
-            actions: vttAction
+            ...vttIConfig, 
+            player: vttmain 
         });
+
         LottieInteractivity.create({
+            ...vttIConfig, 
             player: vtteyes,
-            mode: 'scroll',
-            container: '#scroll_target',
             actions: [{
                     visibility: [0, 0.04],
                     type: "loop",
@@ -136,26 +123,23 @@
                 }
             ]
         });
+
         LottieInteractivity.create({
+            ...vttIConfig, 
             player: vttscroll,
-            mode: 'scroll',
-            container: '#scroll_target',
             actions: [{
-                    visibility: [0, 0.04],
-                    type: "loop",
-                    frames: [0, 50]
-                },
-            ]
+                visibility: [0, 0.04],
+                type: "loop",
+                frames: [0, 50]
+            }, ]
         });
 
         vttmain.setSpeed(0.25)
         vttbg.setSpeed(0.25)
         vtteyes.setSpeed(0.25)
-        setTimeout(function(){ 
-            window.scrollTo({
-            top: 1,
-            behavior: 'smooth'
-        });
+
+        setTimeout(function () {
+            window.scrollTo({ top: 1 });
         }, 500);
     </script>
 </body>
