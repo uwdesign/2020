@@ -1,7 +1,7 @@
-<!-- Thipok Cholsaipant -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <head>
+    <!-- Thipok Cholsaipant -->
     <style>
         body {
             background-color: #44bf80;
@@ -36,7 +36,6 @@
         }
     </style>
 </head>
-
 <body id="scroll_target">
     <div id="vtt_bg"></div>
     <div id="vtt_main"></div>
@@ -72,7 +71,7 @@
             container: document.getElementById('vtt_eyes'),
             path: './vtt_eyes.json',
             rendererSettings: {
-                preserveAspectRatio: 'xMaxYMid meet'
+                preserveAspectRatio: 'xMinYMid meet'
             }
         })
         var vttscroll = bodymovin.loadAnimation({
