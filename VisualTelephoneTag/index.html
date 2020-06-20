@@ -1,4 +1,4 @@
-<!-- Thipok Cholsaipant -->
+<!-- Thipok Cholsaipant 10.51-->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <head>
@@ -131,7 +131,11 @@
                 visibility: [0, 0.04],
                 type: "loop",
                 frames: [0, 200]
-            }, ]
+            }, {
+               visibility: [0.04, 1],
+               type: "stop",
+               frames: [0]
+            }]
         });
 
         vttmain.setSpeed(0.25)
@@ -139,8 +143,8 @@
         vtteyes.setSpeed(0.25)
 
         setTimeout(function () {
-            window.scrollTo({ top: 1 });
-        }, 500);
+            window.scrollTo({ top: 5 });
+        }, 1000);
     </script>
 </body>
 
