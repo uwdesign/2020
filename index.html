@@ -71,14 +71,13 @@
                 preserveAspectRatio: 'xMidYMid meet'
             }
         })
-        vttmain.setSpeed(0.25)
+        
         var vtteyes = bodymovin.loadAnimation({
             container: document.getElementById('vtt_eyes'),
             autoplay: false,
             renderer: 'svg',
             path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_eyes.json'
         })
-        vtteyes.setSpeed(0.25)
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
@@ -122,6 +121,10 @@
                 }
             ]
         });
+
+        vttmain.setSpeed(0.25)
+        vttbg.setSpeed(0.25)
+        vtteyes.setSpeed(0.25)
         setTimeout(function(){ 
             window.scrollTo({
             top: 1,
