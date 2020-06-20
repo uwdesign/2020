@@ -38,7 +38,16 @@
             opacity: 1;
         }
 
-        #vtt_eyes>svg {
+        #vtt_scroll {
+            width: 25%;
+            right: 0;
+            bottom: 0;
+            position: fixed;
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
+        #vtt_eyes > svg {
             height: auto !important;
         }
     </style>
@@ -48,6 +57,7 @@
     <div id="vtt_bg"></div>
     <div id="vtt_main"></div>
     <div id="vtt_eyes"></div>
+    <div id="vtt_scroll"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie_light.min.js"></script>
     <script>
         var vttbg = bodymovin.loadAnimation({
@@ -71,12 +81,17 @@
                 preserveAspectRatio: 'xMidYMid meet'
             }
         })
-        
         var vtteyes = bodymovin.loadAnimation({
             container: document.getElementById('vtt_eyes'),
             autoplay: false,
             renderer: 'svg',
-            path: './vtt_eyes.json'
+            path: './vtt_scroll.json'
+        })
+        var vttscroll = bodymovin.loadAnimation({
+            container: document.getElementById('vtt_scroll'),
+            autoplay: false,
+            renderer: 'svg',
+            path: './vtt_scroll.json'
         })
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
@@ -119,6 +134,17 @@
                     type: "seek",
                     frames: [35, 1250]
                 }
+            ]
+        });
+        LottieInteractivity.create({
+            player: vttscroll,
+            mode: 'scroll',
+            container: '#scroll_target',
+            actions: [{
+                    visibility: [0, 0.04],
+                    type: "loop",
+                    frames: [0, 50]
+                },
             ]
         });
 
