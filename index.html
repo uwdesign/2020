@@ -71,14 +71,13 @@
                 preserveAspectRatio: 'xMidYMid meet'
             }
         })
-        vttmain.setSpeed(0.25)
+        
         var vtteyes = bodymovin.loadAnimation({
             container: document.getElementById('vtt_eyes'),
             autoplay: false,
             renderer: 'svg',
             path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_eyes.json'
         })
-        vtteyes.setSpeed(0.25)
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
@@ -113,19 +112,25 @@
             actions: [{
                     visibility: [0, 0.04],
                     type: "loop",
-                    frames: [0, 65]
+                    frames: [0, 35]
                 },
                 {
                     visibility: [0.04, 1],
                     type: "seek",
-                    frames: [0, 1250]
+                    frames: [35, 1250]
                 }
             ]
         });
-        window.scrollTo({
+
+        vttmain.setSpeed(0.25)
+        vttbg.setSpeed(0.25)
+        vtteyes.setSpeed(0.25)
+        setTimeout(function(){ 
+            window.scrollTo({
             top: 1,
             behavior: 'smooth'
         });
+        }, 2000);
     </script>
 </body>
 
