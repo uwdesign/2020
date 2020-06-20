@@ -22,13 +22,13 @@
         }
 
         #vtt_scroll {
-            width: 25%;
-            height: 25%;
+            width: 15%;
+            height: 15%;
             right: 0;
             bottom: 0;
             position: fixed;
             transform: translate3d(0, 0, 0);
-            opacity: 1;
+            opacity: .5;
         }
 
         #vtt_eyes>svg {
@@ -71,7 +71,7 @@
             container: document.getElementById('vtt_eyes'),
             path: './vtt_eyes.json',
             rendererSettings: {
-                preserveAspectRatio: 'xMinYMid meet'
+                preserveAspectRatio: 'xMidYMax meet'
             }
         })
         var vttscroll = bodymovin.loadAnimation({
@@ -130,7 +130,7 @@
             actions: [{
                 visibility: [0, 0.04],
                 type: "loop",
-                frames: [0, 300]
+                frames: [0, 200]
             }, ]
         });
 
