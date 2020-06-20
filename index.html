@@ -19,6 +19,16 @@
             opacity: 1;
         }
 
+        #vtt_bg {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+
         #vtt_eyes {
             width: 100%;
             left: 0;
@@ -28,36 +38,87 @@
             opacity: 1;
         }
 
-        g.jpeg {
-            border: 4px solid black;
-            box-sizing: border-box;
+        #vtt_eyes>svg {
+            height: auto !important;
         }
     </style>
 </head>
 
 <body id="scroll_target">
+    <div id="vtt_bg"></div>
     <div id="vtt_main"></div>
+    <div id="vtt_eyes"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie_light.min.js"></script>
     <script>
+        var vttbg = bodymovin.loadAnimation({
+            container: document.getElementById('vtt_bg'),
+            renderer: 'svg',
+            autoplay: false,
+            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_bg.json'
+        })
         var vttmain = bodymovin.loadAnimation({
             container: document.getElementById('vtt_main'),
             renderer: 'svg',
             autoplay: false,
-            assetsPath: 'https://images.weserv.nl/?&w=' + Math.ceil(window.innerWidth / 1500) * 500+ '&url=https://thipokch.github.io/2020-VisualTelephoneTag/images-border/',
+            assetsPath: 'https://images.weserv.nl/?fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
+                '&h=' + Math.ceil(window.innerWidth / 1350) * 600 +
+                '&url=https://thipokch.github.io/2020-VisualTelephoneTag/images-border/',
             path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json'
         })
+        vttmain.setSpeed(0.25)
+        var vtteyes = bodymovin.loadAnimation({
+            container: document.getElementById('vtt_eyes'),
+            autoplay: false,
+            renderer: 'svg',
+            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_eyes.json'
+        })
+        vtteyes.setSpeed(0.25)
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
+        var vttAction = [{
+                visibility: [0, 0.04],
+                type: "loop",
+                frames: [10, 35]
+            },
+            {
+                visibility: [0.04, 1],
+                type: "seek",
+                frames: [35, 1250]
+            }
+        ]
+        LottieInteractivity.create({
+            player: vttbg,
+            mode: 'scroll',
+            container: '#scroll_target',
+            actions: vttAction
+        });
+
         LottieInteractivity.create({
             player: vttmain,
             mode: 'scroll',
             container: '#scroll_target',
+            actions: vttAction
+        });
+        LottieInteractivity.create({
+            player: vtteyes,
+            mode: 'scroll',
+            container: '#scroll_target',
             actions: [{
-                visibility: [0, 1],
-                type: "seek",
-                frames: [-50, 1250]
-            }]
+                    visibility: [0, 0.04],
+                    type: "loop",
+                    frames: [0, 35]
+                },
+                {
+                    visibility: [0.04, 1],
+                    type: "seek",
+                    frames: [35, 1250]
+                }
+            ]
+        });
+        window.scrollTo({
+            top: 1,
+            behavior: 'smooth'
         });
     </script>
 </body>
