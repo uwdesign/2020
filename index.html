@@ -54,7 +54,10 @@
             container: document.getElementById('vtt_bg'),
             renderer: 'svg',
             autoplay: false,
-            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_bg.json'
+            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_bg.json',
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+            }
         })
         var vttmain = bodymovin.loadAnimation({
             container: document.getElementById('vtt_main'),
@@ -63,7 +66,10 @@
             assetsPath: 'https://images.weserv.nl/?fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
                 '&h=' + Math.ceil(window.innerWidth / 1350) * 600 +
                 '&url=https://thipokch.github.io/2020-VisualTelephoneTag/images-border/',
-            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json'
+            path: 'https://thipokch.github.io/2020-VisualTelephoneTag/vtt_main.json',
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid meet'
+            }
         })
         vttmain.setSpeed(0.25)
         var vtteyes = bodymovin.loadAnimation({
@@ -107,12 +113,12 @@
             actions: [{
                     visibility: [0, 0.04],
                     type: "loop",
-                    frames: [0, 35]
+                    frames: [0, 65]
                 },
                 {
                     visibility: [0.04, 1],
                     type: "seek",
-                    frames: [35, 1250]
+                    frames: [0, 1250]
                 }
             ]
         });
