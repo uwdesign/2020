@@ -36,9 +36,9 @@
     <script>
         const vttConfig = {
             rendererSettings: {
-                preserveAspectRatio: 'xMidYMid slice'
+                preserveAspectRatio: 'xMidYMid meet'
             },
-            assetsPath: 'https://images.weserv.nl/?w=' + Math.ceil(window.innerWidth / 500) * 250 +
+            assetsPath: 'https://images.uwdesignshow.com/?w=' + Math.ceil(window.innerWidth / 500) * 250 +
                 '&url=https://uwdesign.github.io/2020/Reveal/images/',
             renderer: 'svg',
             autoplay: false,
@@ -50,19 +50,19 @@
             path: './reveal_landscape.json'
         })
 
-        var reveal_portrait = bodymovin.loadAnimation({
-            ...vttConfig,
-            container: document.getElementById('reveal_portrait'),
-            path: './reveal_portrait.json',
-        })
+        // var reveal_portrait = bodymovin.loadAnimation({
+        //     ...vttConfig,
+        //     container: document.getElementById('reveal_portrait'),
+        //     path: './reveal_portrait.json',
+        // })
 
-        var reveal_scroll = bodymovin.loadAnimation({
-            ...vttConfig,
-            container: document.getElementById('reveal_scroll'),
-            path: './reveal_scroll.json',
-            rendererSettings: {
-                preserveAspectRatio: 'xMidYMid meet'
-            },
+        // var reveal_scroll = bodymovin.loadAnimation({
+        //     ...vttConfig,
+        //     container: document.getElementById('reveal_scroll'),
+        //     path: './reveal_scroll.json',
+        //     rendererSettings: {
+        //         preserveAspectRatio: 'xMidYMid meet'
+        //     },
         })
     </script>
     <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
@@ -85,51 +85,35 @@
 
         LottieInteractivity.create({
             ...vttIConfig, 
-            player: vttbg 
+            player: reveal_landscape 
         });
 
-        LottieInteractivity.create({
-            ...vttIConfig, 
-            player: vttmain 
-        });
+        // LottieInteractivity.create({
+        //     ...vttIConfig, 
+        //     player: reveal_portrait 
+        // });
 
-        LottieInteractivity.create({
-            ...vttIConfig, 
-            player: vtteyes,
-            actions: [{
-                    visibility: [0, 0.04],
-                    type: "loop",
-                    frames: [0, 65]
-                },
-                {
-                    visibility: [0.04, 1],
-                    type: "seek",
-                    frames: [35, 1250]
-                }
-            ]
-        });
+        // LottieInteractivity.create({
+        //     ...vttIConfig, 
+        //     player: reveal_scroll,
+        //     actions: [{
+        //         visibility: [0, 0.04],
+        //         type: "loop",
+        //         frames: [0, 71]
+        //     }, {
+        //        visibility: [0.04, 1],
+        //        type: "stop",
+        //        frames: [72]
+        //     }]
+        // });
 
-        LottieInteractivity.create({
-            ...vttIConfig, 
-            player: vttscroll,
-            actions: [{
-                visibility: [0, 0.04],
-                type: "loop",
-                frames: [0, 71]
-            }, {
-               visibility: [0.04, 1],
-               type: "stop",
-               frames: [72]
-            }]
-        });
-
-        vttmain.setSpeed(0.25)
-        vttbg.setSpeed(0.25)
-        vtteyes.setSpeed(0.25)
+        reveal_landscape.setSpeed(0.25)
+        // reveal_portrait.setSpeed(0.25)
+        // reveal_scroll.setSpeed(0.25)
 
         setTimeout(function () {
             window.scrollTo({ top: 5 });
-        }, 1000);
+        }, 500);
     </script>
 </body>
 
