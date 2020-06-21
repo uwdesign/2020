@@ -8,11 +8,12 @@
             margin: 0px;
             height: 2500vh;
         }
+
         #reveal_landscape {
             width: 66%;
             height: 66%;
-            left: 34%;
-            top: 34%;
+            left: 17%;
+            top: 17%;
             position: fixed;
             transform: translate3d(0, 0, 0);
             opacity: 1;
@@ -48,8 +49,8 @@
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMid meet'
             },
-            assetsPath: 'https://images.uwdesignshow.com/?w=' + Math.ceil(window.innerWidth / 500) * 250 +
-                '&url=https://uwdesign.github.io/2020/Reveal/images/',
+            assetsPath: 'https://images.uwdesignshow.com/?auth=uw&w=' + Math.ceil(window.innerWidth / 500) * 250 +
+                '&url=https://uwdesign.github.io/2020/Reveal/images-alpha/',
             renderer: 'svg',
             autoplay: false,
         }
@@ -83,12 +84,12 @@
             actions: [{
                     visibility: [0, 0.04],
                     type: "loop",
-                    frames: [10, 35]
+                    frames: [10, 90]
                 },
                 {
                     visibility: [0.04, 1],
                     type: "seek",
-                    frames: [35, 1250]
+                    frames: [90, 1250]
                 }
             ]
         }
