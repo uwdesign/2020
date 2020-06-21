@@ -37,7 +37,7 @@
     <div id="vtt_main"></div>
     <div id="vtt_eyes"></div>
     <div id="vtt_scroll"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie_light.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.10/lottie_light.min.js"></script>
     <script>
         const vttConfig = {
             rendererSettings: {
@@ -57,7 +57,7 @@
         var vttmain = bodymovin.loadAnimation({
             ...vttConfig,
             container: document.getElementById('vtt_main'),
-            assetsPath: 'https://images.weserv.nl/?fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
+            assetsPath: '//images.uwdesignshow.com/?il&auth=uw&fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
                 '&h=' + Math.ceil(window.innerWidth / 1350) * 600 +
                 '&url=https://uwdesign.github.io/2020/VisualTelephoneTag/images-border/',
             path: './vtt_main.json',
@@ -76,7 +76,7 @@
             path: './vtt_scroll.json'
         })
     </script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+    <script src="//unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <script>
         const vttIConfig = {
             mode: 'scroll',
