@@ -57,9 +57,9 @@
         var vttmain = bodymovin.loadAnimation({
             ...vttConfig,
             container: document.getElementById('vtt_main'),
-            assetsPath: '//images.uwdesignshow.com/?il&auth=uw&fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
+            assetsPath: '//images.uwdesignshow.com/?il&fit=fill&w=' + Math.ceil(window.innerWidth / 1350) * 450 +
                 '&h=' + Math.ceil(window.innerWidth / 1350) * 600 +
-                '&url=https://uwdesign.github.io/2020/VisualTelephoneTag/images-border/',
+                '&auth=uw&url=https://uwdesign.github.io/2020/VisualTelephoneTag/images-border/',
             path: './vtt_main.json',
         })
         var vtteyes = bodymovin.loadAnimation({
