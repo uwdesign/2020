@@ -1,4 +1,8 @@
-[
+{
+  "number": "6",
+  "prompt" : "A Gift From Nature",
+  "description" : "Parks, plants, flowers, and even pets. Nature is what grounds us, so why not celebrate it.",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -222,3 +226,4 @@
     "src": "./images/pr6/taylor-woo.jpeg"
   }
 ]
+}

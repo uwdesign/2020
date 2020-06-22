@@ -1,4 +1,8 @@
-[
+{
+  "number": "8",
+  "prompt" : "",
+  "description" : "",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -222,3 +226,4 @@
     "src": "./images/pr8/yuansi-li.jpeg"
   }
 ]
+}

@@ -1,4 +1,8 @@
-[
+{
+  "number": "5",
+  "prompt" : "Good Design",
+  "description" : "As our last year of design school comes to a close, it only seemed fair to ask the age old question: “What is good design?”",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -240,3 +244,4 @@
     "src": "./images/pr5/taylor-woo.jpeg"
   }
 ]
+}

@@ -1,4 +1,8 @@
-[
+{
+  "number": "2",
+  "prompt" : "A View",
+  "description" : "With each of us being in different places comes unique views, perspectives, and surroundings. It is important to take a moment to notice and appreciate these views.",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -288,3 +292,4 @@
     "src": "./images/pr2/thipok-cholsaipant.jpeg"
   }
 ]
+}

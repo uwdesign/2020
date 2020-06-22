@@ -1,4 +1,8 @@
-[
+{
+  "number": "9",
+  "prompt" : "",
+  "description" : "",
+  "images": [
   {
     "name": "Alaina Kleck",
     "slug": "alaina-kleck",
@@ -60,3 +64,4 @@
     "src": "./images/pr9/cynthia-he.jpeg"
   }
 ]
+}

@@ -1,4 +1,8 @@
-[
+{
+  "number": "3",
+  "prompt" : "A Part of Your Routine",
+  "description" : "Life can be pretty mundane in quarantine. Without some structure or a place you need to be, it can be easy to go a little stir crazy. But most of us have a few little things that help us keep going and get through the day.",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -348,3 +352,4 @@
     "src": "./images/pr3/yuansi-li.jpeg"
   }
 ]
+}

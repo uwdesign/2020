@@ -1,4 +1,8 @@
-[
+{
+  "number": "",
+  "prompt" : "Create a Still Life",
+  "description" : "The perfect challenge for a bored design student. Color, light, form, and texture are the tools for creating a captivating composition.",
+  "images": [
   {
     "name": "Alex Alspaugh",
     "slug": "alex-alspaugh",
@@ -276,3 +280,4 @@
     "src": "./images/pr7/taylor-woo.jpeg"
   }
 ]
+}
