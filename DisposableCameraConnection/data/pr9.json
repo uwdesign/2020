@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Alaina Kleck",
+    "slug": "alaina-kleck",
+    "program": "ID",
+    "src": "./images/pr9/alaina-kleck.jpeg"
+  },
+  {
+    "name": "Alyssa Collister",
+    "slug": "alyssa-collister",
+    "program": "VCD",
+    "src": "./images/pr9/alyssa-collister.jpeg"
+  },
+  {
+    "name": "Ariana Garland",
+    "slug": "ariana-garland",
+    "program": "IxD",
+    "src": "./images/pr9/ariana-garland.jpeg"
+  },
+  {
+    "name": "Brennan Jackson",
+    "slug": "brennan-jackson",
+    "program": "VCD",
+    "src": "./images/pr9/brennan-jackson.jpeg"
+  },
+  {
+    "name": "Bridget Lewis",
+    "slug": "bridget-lewis",
+    "program": "IxD",
+    "src": "./images/pr9/bridget-lewis.jpeg"
+  },
+  {
+    "name": "Bridgette Chen",
+    "slug": "bridgette-chen",
+    "program": "VCD",
+    "src": "./images/pr9/bridgette-chen.jpeg"
+  },
+  {
+    "name": "Brys Fleming-Henning",
+    "slug": "brys-fleming-henning",
+    "program": "ID",
+    "src": "./images/pr9/brys-fleming-henning.jpeg"
+  },
+  {
+    "name": "Calvin Kordel",
+    "slug": "calvin-kordel",
+    "program": "VCD",
+    "src": "./images/pr9/calvin-kordel.jpeg"
+  },
+  {
+    "name": "Caroline Slick",
+    "slug": "caroline-slick",
+    "program": "ID",
+    "src": "./images/pr9/caroline-slick.jpeg"
+  },
+  {
+    "name": "Cynthia He",
+    "slug": "cynthia-he",
+    "program": "IxD",
+    "src": "./images/pr9/cynthia-he.jpeg"
+  }
+]

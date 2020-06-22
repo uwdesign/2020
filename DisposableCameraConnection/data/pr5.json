@@ -1,0 +1,242 @@
+[
+  {
+    "name": "Alex Alspaugh",
+    "slug": "alex-alspaugh",
+    "program": "IxD",
+    "src": "./images/pr5/alex-alspaugh.jpeg"
+  },
+  {
+    "name": "Alyssa Collister",
+    "slug": "alyssa-collister",
+    "program": "VCD",
+    "src": "./images/pr5/alyssa-collister.jpeg"
+  },
+  {
+    "name": "Anna Hagadorn",
+    "slug": "anna-hagadorn",
+    "program": "VCD",
+    "src": "./images/pr5/anna-hagadorn.jpeg"
+  },
+  {
+    "name": "Aria Cha",
+    "slug": "aria-cha",
+    "program": "IxD",
+    "src": "./images/pr5/aria-cha.jpeg"
+  },
+  {
+    "name": "Ariana Garland",
+    "slug": "ariana-garland",
+    "program": "IxD",
+    "src": "./images/pr5/ariana-garland.jpeg"
+  },
+  {
+    "name": "Brennan Jackson",
+    "slug": "brennan-jackson",
+    "program": "VCD",
+    "src": "./images/pr5/brennan-jackson.jpeg"
+  },
+  {
+    "name": "Bridgette Chen",
+    "slug": "bridgette-chen",
+    "program": "VCD",
+    "src": "./images/pr5/bridgette-chen.jpeg"
+  },
+  {
+    "name": "Brys Fleming-Henning",
+    "slug": "brys-fleming-henning",
+    "program": "ID",
+    "src": "./images/pr5/brys-fleming-henning.jpeg"
+  },
+  {
+    "name": "Cal Dobrzynski",
+    "slug": "cal-dobrzynski",
+    "program": "MDes",
+    "src": "./images/pr5/cal-dobrzynski.jpeg"
+  },
+  {
+    "name": "Camille Vance",
+    "slug": "camille-vance",
+    "program": "VCD",
+    "src": "./images/pr5/camille-vance.jpeg"
+  },
+  {
+    "name": "Casey Jacobson",
+    "slug": "casey-jacobson",
+    "program": "VCD",
+    "src": "./images/pr5/casey-jacobson.jpeg"
+  },
+  {
+    "name": "Cecilia Zhao",
+    "slug": "cecilia-zhao",
+    "program": "IxD",
+    "src": "./images/pr5/cecilia-zhao.jpeg"
+  },
+  {
+    "name": "Claire Kantner",
+    "slug": "claire-kantner",
+    "program": "IxD",
+    "src": "./images/pr5/claire-kantner.jpeg"
+  },
+  {
+    "name": "Cynthia He",
+    "slug": "cynthia-he",
+    "program": "IxD",
+    "src": "./images/pr5/cynthia-he.jpeg"
+  },
+  {
+    "name": "Dang-Khoa Huynh",
+    "slug": "dang-khoa-huynh",
+    "program": "ID",
+    "src": "./images/pr5/dang-khoa-huynh.jpeg"
+  },
+  {
+    "name": "Emma Switzer",
+    "slug": "emma-switzer",
+    "program": "ID",
+    "src": "./images/pr5/emma-switzer.png"
+  },
+  {
+    "name": "Eric Nakassa",
+    "slug": "eric-nakassa",
+    "program": "ID",
+    "src": "./images/pr5/eric-nakassa.png"
+  },
+  {
+    "name": "Ian Yu",
+    "slug": "ian-yu",
+    "program": "IxD",
+    "src": "./images/pr5/ian-yu.png"
+  },
+  {
+    "name": "Jacob Elias",
+    "slug": "jacob-elias",
+    "program": "IxD",
+    "src": "./images/pr5/jacob-elias.png"
+  },
+  {
+    "name": "Jay Ma",
+    "slug": "jay-ma",
+    "program": "ID",
+    "src": "./images/pr5/jay-ma.png"
+  },
+  {
+    "name": "Jeremy Viny",
+    "slug": "jeremy-viny",
+    "program": "MDes",
+    "src": "./images/pr5/jeremy-viny.jpeg"
+  },
+  {
+    "name": "Justin Tran",
+    "slug": "justin-tran",
+    "program": "VCD",
+    "src": "./images/pr5/justin-tran.png"
+  },
+  {
+    "name": "Katelyn Hirata",
+    "slug": "katelyn-hirata",
+    "program": "IxD",
+    "src": "./images/pr5/katelyn-hirata.jpeg"
+  },
+  {
+    "name": "Keoni Moore",
+    "slug": "keoni-moore",
+    "program": "VCD",
+    "src": "./images/pr5/keoni-moore.jpeg"
+  },
+  {
+    "name": "Koko Morrill",
+    "slug": "koko-morrill",
+    "program": "VCD",
+    "src": "./images/pr5/koko-morrill.jpeg"
+  },
+  {
+    "name": "Luke Raddue",
+    "slug": "luke-raddue",
+    "program": "ID",
+    "src": "./images/pr5/luke-raddue.jpeg"
+  },
+  {
+    "name": "Maggie Horton",
+    "slug": "maggie-horton",
+    "program": "VCD",
+    "src": "./images/pr5/maggie-horton.jpeg"
+  },
+  {
+    "name": "Maya Flood",
+    "slug": "maya-flood",
+    "program": "VCD",
+    "src": "./images/pr5/maya-flood.jpeg"
+  },
+  {
+    "name": "Maygha Puri",
+    "slug": "maygha-puri",
+    "program": "IxD",
+    "src": "./images/pr5/maygha-puri.jpeg"
+  },
+  {
+    "name": "Naoki Kida",
+    "slug": "naoki-kida",
+    "program": "ID",
+    "src": "./images/pr5/naoki-kida.jpeg"
+  },
+  {
+    "name": "Nohea Puulei",
+    "slug": "nohea-puulei",
+    "program": "VCD",
+    "src": "./images/pr5/nohea-puulei.jpeg"
+  },
+  {
+    "name": "Noya Dolev",
+    "slug": "noya-dolev",
+    "program": "IxD",
+    "src": "./images/pr5/noya-dolev.jpeg"
+  },
+  {
+    "name": "Peter Mach",
+    "slug": "peter-mach",
+    "program": "IxD",
+    "src": "./images/pr5/peter-mach.jpeg"
+  },
+  {
+    "name": "Piper Loyd",
+    "slug": "piper-loyd",
+    "program": "MDes",
+    "src": "./images/pr5/piper-loyd.jpeg"
+  },
+  {
+    "name": "Samer Fouad",
+    "slug": "samer-fouad",
+    "program": "MDes",
+    "src": "./images/pr5/samer-fouad.jpeg"
+  },
+  {
+    "name": "Sara Tieu",
+    "slug": "sara-tieu",
+    "program": "IxD",
+    "src": "./images/pr5/sara-tieu.jpeg"
+  },
+  {
+    "name": "Sarah Chu",
+    "slug": "sarah-chu",
+    "program": "IxD",
+    "src": "./images/pr5/sarah-chu.jpeg"
+  },
+  {
+    "name": "Sarah Strickler",
+    "slug": "sarah-strickler",
+    "program": "IxD",
+    "src": "./images/pr5/sarah-strickler.jpeg"
+  },
+  {
+    "name": "Sofia Cababa Wood",
+    "slug": "sofia-cababa-wood",
+    "program": "VCD",
+    "src": "./images/pr5/sofia-cababa-wood.jpeg"
+  },
+  {
+    "name": "Taylor Woo",
+    "slug": "taylor-woo",
+    "program": "ID",
+    "src": "./images/pr5/taylor-woo.jpeg"
+  }
+]

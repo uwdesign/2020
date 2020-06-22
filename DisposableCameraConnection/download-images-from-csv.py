@@ -10,11 +10,12 @@ import os.path
 csv_filename = sys.argv[1]
 url_column = int(sys.argv[2])
 folder_name = sys.argv[3]
-append_url = "https://images.weserv.nl/?&il&af&url="
+# https://images.weserv.nl/?il&af&url=
+append_url = "https://images.weserv.nl/?il&af&url="
 
 data = []
 
-with open(csv_filename+".csv".format(csv_filename), 'r') as read_file, open( folder_name + 'url.csv', 'w') as write_file:
+with open(csv_filename+".csv".format(csv_filename), 'r') as read_file, open( folder_name.split('/')[-1] + '-url.csv', 'w') as write_file:
     writer = csv.writer(write_file)
     for line in csv.reader(read_file):
         if (line[url_column] != "") & ("//" in line[url_column]):
@@ -23,9 +24,11 @@ with open(csv_filename+".csv".format(csv_filename), 'r') as read_file, open( fol
                 print "Image skipped for {0}".format(line[0])
             else:
                 if line[url_column] != '':
-                    fileuri = folder_name + "/" + filename
-                    urllib.urlretrieve(append_url + line[url_column], fileuri)
-                    writer.writerow([line[0],line[1],line[2], line[url_column], ["./" + fileuri]])
+                    fileuri = folder_name + "/" + line[1] + "." + filename.split('.')[-1] 
+                    # print((append_url + line[url_column]))
+                    urllib.urlretrieve((append_url + line[url_column]), fileuri) 
+
+                    writer.writerow([line[0],line[1],line[2], "./images/" + fileuri])
                     print "Image saved for {0}".format(filename)
                 else:
                     print "No result for {0}".format(filename)
