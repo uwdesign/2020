@@ -28,13 +28,27 @@
 
         .item {
             width: calc(45vh - 24px);
-            margin: 12px;
+            margin-bottom: 24px;
+            /* transition: opacity .5s cubic-bezier(.55,.055,.675,.19) !important; */
+            transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+
+            /* margin: 12px; */
+        }
+
+        .item:hover img {
+            opacity: 0.15;
+        }
+
+        .item img {
+            transition: opacity .3s;
+            transition-timing-function: cubic-bezier(.55, .055, .675, .19);
         }
 
         .image {
             max-width: 100%;
             margin: 0;
             display: block;
+            object-fit: cover;
         }
 
         .image:after {
@@ -48,18 +62,22 @@
             bottom: 0;
             left: 0;
             text-decoration: none;
-            color: #fff;
-            display: none;
+            color: #000cee;
 
             transform-origin: bottom left;
             transform: rotate3d(0, 0, 1, 90deg) translate3d(-100%, 0, 0);
+            opacity: 0;
+            transition: opacity .3s;
+            transition-timing-function: cubic-bezier(1.000, 0.000, 0.000, 1.000);
             /* Note: for a CLOCKWISE rotation, use the commented-out
             transform instead of this one. */
+            /* Use 3d tranform or opengl performance */
             /* transform: rotate(90deg) translate(0, -100%) */
         }
 
         .item:hover .overlay {
             display: block;
+            opacity: 1;
         }
 
         #loadMore {
@@ -74,7 +92,9 @@
             padding-left: 24px;
             padding-bottom: 25vw;
             transform-origin: top left;
-            transform: rotate(-90deg) translate(-100vh, 0%);
+            /* transform: rotate(-90deg) translate(-100vh, 0%); */
+            /* Use 3d tranform or opengl performance */
+            transform: rotate3d(0, 0, 1, -90deg) translate3d(-100%, 0%, 0);
         }
 
         #rotatecontainer {
@@ -82,6 +102,22 @@
             overflow-y: hidden;
             margin: 0;
         }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        /* .item .new {
+            transform: translateY(50px);
+            transition: opacity .5s cubic-bezier(.55,.055,.675,.19);
+            opacity: 0;
+        }
+        .item {
+            transform: translateY(0px);
+            opacity: 1;
+        } */
     </style>
 </head>
 
@@ -101,14 +137,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
-
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
     <script>
         const $uwdimg = "https://images.uwdesignshow.com/?"
         const imgquery = "ro=90&af&il&auth=uw"
         const urlpath = "https://gh.uwdesignshow.com/2020/DisposableCameraConnection/"
-        const itemsCount = 2
-        var debugvar = {}
+        const itemsCount = 5
+        var fetching = 0
         //
         // When jquery is ready
         $(document).ready(function () {
@@ -131,6 +166,8 @@
             var hiddenItems = {}
             var addedItems = []
 
+            $container = $('#container')
+
             $.getJSON(urlpath + "data/" + urlParams["data"],
                 function (data) {
                     console.log(this)
@@ -138,39 +175,44 @@
                     hiddenItems = data.images
                 });
 
-            $('#container').masonry({
+            $container.masonry({
                 itemSelector: ".item",
                 columnWidth: ".grid-sizer",
                 hiddenStyle: {
-                    transform: 'translateY(50px)',
+                    transform: 'translateY(100px)',
                     opacity: 0
                 },
                 visibleStyle: {
                     transform: 'translateY(0px)',
                     opacity: 1
-                }
-                // "gutter": "12"
-                // "transitionDuration": "0"
+                },
+                stagger: 30,
+                // gutter: "12",
+                // transitionDuration: "1"
             });
+
+            // $container.infiniteScroll({
+            //     append: false, // disable automatic appending
+            // });
+
+
 
             function srcSet(url, sizes) {
                 var srcSetString = "";
                 sizes.forEach(function (elem) {
                     // srcSetString += ($uwdimg + imgquery + "&w=" + elem + "&url=" + url);
-                    srcSetString += ($uwdimg + imgquery + "&w=" + String(Math.round(window.innerWidth /
-                        3)) + "&url=" + url);
-                    srcSetString += (" " + elem + "w, ");
+                    srcSetString += ($uwdimg + imgquery + "&w=" + elem + "&url=" + url);
+                    srcSetString += (" " + (elem * 2) + "w, ");
                 })
                 return srcSetString;
             }
 
             function generateItem(itemData) {
-                debugvar = itemData
                 var src = urlpath + itemData.src.substring('2')
                 return '<div class="item new"><img srcset="' +
-                    srcSet(src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
+                    srcSet(src, [100, 300, 500, 750, 1000, 1500]) +
                     '" class="image"><a class="overlay" href="https://www.uwdesignshow.com/students/' + itemData
-                    .slug + '">' + itemData.name + '</a></div>';
+                    .slug + '">' + itemData.name + '—' + itemData.program + '</a></div>';
             }
 
             function addItemFrom() {
@@ -194,57 +236,43 @@
                 $('#container').find('img').on('load', (event) => {
                     var $img = event.target
                     var $item = $($img.parentElement);
-                    console.log($img)
-                    $item.show();
+
                     $item.removeClass('new');
-                    $('#container').masonry('appended', $item)
-                        // layout
-                        .masonry();   
+                    $item.show();
+                    $('#container').masonry('appended', $item);
+                    // layout
+                    $('#container').masonry();
+                    $('#loadMore').show()
+                    fetching--;
                 })
                 // $('#container').masonryImagesReveal($('#container').find('.item'))
-                $('#loadMore').show()
+
             }
-
-            $.fn.masonryImagesReveal = function ($items) {
-                var msnry = this.data('masonry');
-                var itemSelector = msnry.options.itemSelector;
-                console.log($items.filter('.new'));
-                // hide by default
-                $items.filter('.new').hide();
-
-                // append to container
-                this.append($items);
-                // $items.filter('.new')
-                $items.filter('.new').imagesLoaded().progress(function (imgLoad, image) {
-                    // get item
-                    // image is imagesLoaded class, not <img>, <img> is image.img
-                    var $item = $(image.img).parents(itemSelector);
-
-                    // masonry does its thing
-                    setTimeout(function () {
-                        // un-hide item
-                        $item.show();
-                        //your code to be executed after 1 second
-                        msnry.appended($item);
-                        $('#container').masonry();
-                    }, 500);
-
-                    setTimeout(function () {
-                        //your code to be executed after 1 second
-                        $('#container').masonry();
-                    }, 2000);
-                    // $('#container').masonry('reloadItems')
-
-                    $item.removeClass('new');
-                });
-                return this;
-            };
 
             $('#loadMore').click(function () {
                 $(this).hide();
                 addItemFrom();
             });
 
+            $(window).scroll(function () {
+                // End of the document reached?
+                console.log($(document).width() - $(window).width() == $(window).scrollLeft());
+                if ($(document).width() - $(window).width() == $(window).scrollLeft()) {
+                    console.log('ya')
+                    if (fetching <= 0) {
+                        fetching += itemsCount;
+                        $('#loadMore').click();
+                        // time out refetch
+                        setTimeout(() => {
+                            fetching = 0;
+                        }, 2000)
+                    }
+
+                }
+            });
+
+            // $('#loadMore').click();
+            // $('#loadMore').click();
         });
     </script>
 </body>
