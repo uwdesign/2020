@@ -97,121 +97,120 @@
 
 
 
-<button id="loadMore" type="button">Load more</button>
+    <button id="loadMore" type="button">Load more</button>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.0.0/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
 
-<script>
-    // When jquery is ready
-    $(document).ready(function () {
-        $('#container').masonry({
-            itemSelector: ".item",
-            columnWidth: ".grid-sizer",
-            hiddenStyle: {
-                transform: 'translateY(50px)',
-                opacity: 0
-            },
-            visibleStyle: {
-                transform: 'translateY(0px)',
-                opacity: 1
-            }
-            // "gutter": "12"
-            // "transitionDuration": "0"
-        });
-        $('#container').masonry();
-
-        const $uwdimg = "https://images.uwdesignshow.com/?"
-        var $dataset = {}
-
-        function getDataset(data) {
-            return $.map(data,
-                (value, index) => {
-                    var vData = $(value)[0].dataset;
-                    if (vData.highsrc) {
-                        return vData;
-                    }
+    <script>
+        // When jquery is ready
+        $(document).ready(function () {
+            function getUrlVars() {
+                var vars = [],
+                    hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for (var i = 0; i < hashes.length; i++) {
+                    hash = hashes[i].split('=');
+                    vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
                 }
-            )
-        }
+                return vars;
+            }
 
-        function srcSet(url, sizes) {
-            var srcSetString = "";
-            sizes.forEach(function (elem) {
-                srcSetString += ($uwdimg + "ro=90&il&auth=uw&w=" + elem + "&url=" + url);
-                srcSetString += (" " + elem + "w, ");
-            })
-            return srcSetString;
-        }
+            const urlParams = getUrlVars();
 
-        function generateItem(vData) {
-            return '<div class="item new"><img srcset="' +
-                srcSet(vData.highsrc, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
-                '" class="image"><a class="overlay" href="#">' + vData.name + '</a></div>';
-        }
+            var json = {}
 
-        function addItemFrom(data) {
-            var $elems = $.map(data, (value, index) => {
-                var elem = generateItem(value)
-                return $(elem);
-            })
-
-            //                 console.log($elems)
-            $('#container').append($elems)
-            console.log($('#container').find('.item'))
-
-            $('#container').masonryImagesReveal($('#container').find('.item'))
-            $('#loadMore').show()
-        }
-
-        $.fn.masonryImagesReveal = function ($items) {
-            var msnry = this.data('masonry');
-            var itemSelector = msnry.options.itemSelector;
-            console.log($items.filter('.new'));
-            // hide by default
-            $items.filter('.new').hide();
-
-            // append to container
-            this.append($items);
-            $items.filter('.new').imagesLoaded().progress(function (imgLoad, image) {
-                // get item
-                // image is imagesLoaded class, not <img>, <img> is image.img
-                var $item = $(image.img).parents(itemSelector);
-
-                // masonry does its thing
-                setTimeout(function () {
-                    // un-hide item
-                    $item.show();
-
-                    //your code to be executed after 1 second
-                    msnry.appended($item);
-                    $('#container').masonry();
-                }, 500);
-                // $('#container').masonry('reloadItems')
-
-                $item.removeClass('new');
+            $.getJSON("https://gh.uwdesignshow.com/2020/DisposableCameraConnection/data/" + urlParams["data"], function (data) {
+                json = data
             });
-            return this;
-        };
 
-        $.ajax({
-            url: "https://www.uwdesignshow.com/data/dcc",
-            beforeSend: function () {}
-        }).done((response) => {
-            var data = $('data', response);
-            $dataset = getDataset(data)
+            $('#container').masonry({
+                itemSelector: ".item",
+                columnWidth: ".grid-sizer",
+                hiddenStyle: {
+                    transform: 'translateY(50px)',
+                    opacity: 0
+                },
+                visibleStyle: {
+                    transform: 'translateY(0px)',
+                    opacity: 1
+                }
+                // "gutter": "12"
+                // "transitionDuration": "0"
+            });
+
+            const $uwdimg = "https://images.uwdesignshow.com/?"
+            const imgquery = "ro=90&af&il&auth=uw"
+
+            function srcSet(url, sizes) {
+                var srcSetString = "";
+                sizes.forEach(function (elem) {
+                    srcSetString += ($uwdimg + imgquery +"&w=" + elem + "&url=" + url);
+                    srcSetString += (" " + elem + "w, ");
+                })
+                return srcSetString;
+            }
+
+            function generateItem(itemData) {
+                var src = itemData.src()
+                return '<div class="item new"><img srcset="' +
+                    srcSet(itemData.src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
+                    '" class="image"><a class="overlay" href="https://www.uwdesignshow.com/students/'+ itemData.slug +'">' + itemData.name + '</a></div>';
+            }
+
+            function addItemFrom(itemsData) {
+                var $elems = $.map(itemsData, (value, index) => {
+                    var elem = generateItem(value)
+                    return $(elem);
+                })
+
+                //                 console.log($elems)
+                $('#container').append($elems)
+                console.log($('#container').find('.item'))
+
+                $('#container').masonryImagesReveal($('#container').find('.item'))
+                $('#loadMore').show()
+            }
+
+            $.fn.masonryImagesReveal = function ($items) {
+                var msnry = this.data('masonry');
+                var itemSelector = msnry.options.itemSelector;
+                console.log($items.filter('.new'));
+                // hide by default
+                $items.filter('.new').hide();
+
+                // append to container
+                this.append($items);
+                $items.filter('.new').imagesLoaded().progress(function (imgLoad, image) {
+                    // get item
+                    // image is imagesLoaded class, not <img>, <img> is image.img
+                    var $item = $(image.img).parents(itemSelector);
+
+                    // masonry does its thing
+                    setTimeout(function () {
+                        // un-hide item
+                        $item.show();
+
+                        //your code to be executed after 1 second
+                        msnry.appended($item);
+                        $('#container').masonry();
+                    }, 500);
+                    // $('#container').masonry('reloadItems')
+
+                    $item.removeClass('new');
+                });
+                return this;
+            };
+            
+            $('#loadMore').click(function () {
+                $(this).hide();
+                addItemFrom($dataset);
+            });
+
         });
-
-
-
-        $('#loadMore').click(function () {
-            $(this).hide();
-            addItemFrom($dataset);
-        });
-
-    });
-</script>
+    </script>
 </body>
 
 </html>
