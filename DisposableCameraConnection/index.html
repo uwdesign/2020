@@ -108,7 +108,7 @@
         const imgquery = "ro=90&af&il&auth=uw"
         const urlpath = "https://gh.uwdesignshow.com/2020/DisposableCameraConnection/"
         const itemsCount = 2
-
+        var debugvar = {}
         //
         // When jquery is ready
         $(document).ready(function () {
@@ -129,12 +129,13 @@
             var json = {}
 
             var hiddenItems = {}
-            var addedItems = {}
+            var addedItems = []
 
-            $.getJSON( urlpath + "data/" + urlParams["data"],
+            $.getJSON(urlpath + "data/" + urlParams["data"],
                 function (data) {
+                    console.log(this)
                     json = data
-                    items = data.images
+                    hiddenItems = data.images
                 });
 
             $('#container').masonry({
@@ -155,14 +156,17 @@
             function srcSet(url, sizes) {
                 var srcSetString = "";
                 sizes.forEach(function (elem) {
-                    srcSetString += ($uwdimg + imgquery + "&w=" + elem + "&url=" + url);
+                    // srcSetString += ($uwdimg + imgquery + "&w=" + elem + "&url=" + url);
+                    srcSetString += ($uwdimg + imgquery + "&w=" + String(Math.round(window.innerWidth /
+                        3)) + "&url=" + url);
                     srcSetString += (" " + elem + "w, ");
                 })
                 return srcSetString;
             }
 
             function generateItem(itemData) {
-                var src = urlpath + "images/" + itemData.src.substring('1')
+                debugvar = itemData
+                var src = urlpath + itemData.src.substring('2')
                 return '<div class="item new"><img srcset="' +
                     srcSet(src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
                     '" class="image"><a class="overlay" href="https://www.uwdesignshow.com/students/' + itemData
@@ -171,22 +175,33 @@
 
             function addItemFrom() {
                 var elems = []
-                for (var i = itemsCount; i >= 0; i--) {
+                console.log(hiddenItems)
+                for (var i = itemsCount - 1; i >= 0; i--) {
                     if (hiddenItems.length > 0) {
                         var item = hiddenItems.splice(Math.floor(Math.random() * hiddenItems.length), 1);
-                        $item = $(generateItem(item))
+                        console.log(item)
+                        $item = $(generateItem(item[0]))
                         elems.push($item);
                         addedItems.push([item, $item]);
                     } else {
                         break;
                     }
                 }
-        
+
                 //                 console.log($elems)
                 $('#container').append(elems)
-                console.log($('#container').find('.item'))
-
-                $('#container').masonryImagesReveal($('#container').find('.item'))
+                $('#container').find('items').filter('.new').hide();
+                $('#container').find('img').on('load', (event) => {
+                    var $img = event.target
+                    var $item = $($img.parentElement);
+                    console.log($img)
+                    $item.show();
+                    $item.removeClass('new');
+                    $('#container').masonry('appended', $item)
+                        // layout
+                        .masonry();   
+                })
+                // $('#container').masonryImagesReveal($('#container').find('.item'))
                 $('#loadMore').show()
             }
 
@@ -199,6 +214,7 @@
 
                 // append to container
                 this.append($items);
+                // $items.filter('.new')
                 $items.filter('.new').imagesLoaded().progress(function (imgLoad, image) {
                     // get item
                     // image is imagesLoaded class, not <img>, <img> is image.img
@@ -208,11 +224,15 @@
                     setTimeout(function () {
                         // un-hide item
                         $item.show();
-
                         //your code to be executed after 1 second
                         msnry.appended($item);
                         $('#container').masonry();
                     }, 500);
+
+                    setTimeout(function () {
+                        //your code to be executed after 1 second
+                        $('#container').masonry();
+                    }, 2000);
                     // $('#container').masonry('reloadItems')
 
                     $item.removeClass('new');
