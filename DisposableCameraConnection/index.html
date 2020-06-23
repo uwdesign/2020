@@ -104,6 +104,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
 
     <script>
+        const $uwdimg = "https://images.uwdesignshow.com/?"
+        const imgquery = "ro=90&af&il&auth=uw"
+        const urlpath = "https://gh.uwdesignshow.com/2020/DisposableCameraConnection/"
+        const itemsCount = 2
+
+        //
         // When jquery is ready
         $(document).ready(function () {
             function getUrlVars() {
@@ -122,9 +128,14 @@
 
             var json = {}
 
-            $.getJSON("https://gh.uwdesignshow.com/2020/DisposableCameraConnection/data/" + urlParams["data"], function (data) {
-                json = data
-            });
+            var hiddenItems = {}
+            var addedItems = {}
+
+            $.getJSON( urlpath + "data/" + urlParams["data"],
+                function (data) {
+                    json = data
+                    items = data.images
+                });
 
             $('#container').masonry({
                 itemSelector: ".item",
@@ -141,33 +152,38 @@
                 // "transitionDuration": "0"
             });
 
-            const $uwdimg = "https://images.uwdesignshow.com/?"
-            const imgquery = "ro=90&af&il&auth=uw"
-
             function srcSet(url, sizes) {
                 var srcSetString = "";
                 sizes.forEach(function (elem) {
-                    srcSetString += ($uwdimg + imgquery +"&w=" + elem + "&url=" + url);
+                    srcSetString += ($uwdimg + imgquery + "&w=" + elem + "&url=" + url);
                     srcSetString += (" " + elem + "w, ");
                 })
                 return srcSetString;
             }
 
             function generateItem(itemData) {
-                var src = itemData.src()
+                var src = urlpath + "images/" + itemData.src.substring('1')
                 return '<div class="item new"><img srcset="' +
-                    srcSet(itemData.src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
-                    '" class="image"><a class="overlay" href="https://www.uwdesignshow.com/students/'+ itemData.slug +'">' + itemData.name + '</a></div>';
+                    srcSet(src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
+                    '" class="image"><a class="overlay" href="https://www.uwdesignshow.com/students/' + itemData
+                    .slug + '">' + itemData.name + '</a></div>';
             }
 
-            function addItemFrom(itemsData) {
-                var $elems = $.map(itemsData, (value, index) => {
-                    var elem = generateItem(value)
-                    return $(elem);
-                })
-
+            function addItemFrom() {
+                var elems = []
+                for (var i = itemsCount; i >= 0; i--) {
+                    if (hiddenItems.length > 0) {
+                        var item = hiddenItems.splice(Math.floor(Math.random() * hiddenItems.length), 1);
+                        $item = $(generateItem(item))
+                        elems.push($item);
+                        addedItems.push([item, $item]);
+                    } else {
+                        break;
+                    }
+                }
+        
                 //                 console.log($elems)
-                $('#container').append($elems)
+                $('#container').append(elems)
                 console.log($('#container').find('.item'))
 
                 $('#container').masonryImagesReveal($('#container').find('.item'))
@@ -203,7 +219,7 @@
                 });
                 return this;
             };
-            
+
             $('#loadMore').click(function () {
                 $(this).hide();
                 addItemFrom($dataset);
