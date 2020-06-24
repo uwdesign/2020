@@ -4,6 +4,16 @@
 
 <head>
     <style>
+        a {
+            text-decoration: none;
+            color: #000cee;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #000cee;
+        }
+
         div {
             box-sizing: border-box;
         }
@@ -46,16 +56,26 @@
             min-height: 25vw;
         }
 
-        .masonry-item .overlay {
+        .masonry .overlay {
+            opacity: 1;
             position: absolute;
             bottom: 0;
             left: 0;
-            opacity: 0;
+            transition-delay: .5s;
             transition: all 1s;
             transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+            transform-origin: bottom left;
+            transform: rotate3d(0, 0, 1, 90deg) translate3d(-100%, 0, 0);
             font-family: 'Reckless Neue', 'Times New Roman', serif;
             font-weight: 100;
             font-style: italic;
+            font-size: 16pt;
+            margin-right: 32px;
+            margin: 24px;
+        }
+
+        .masonry-item.appended .overlay {
+            opacity: 0;
         }
 
         .masonry-item:hover .overlay {
@@ -63,9 +83,9 @@
         }
 
         .image-container {
-            margin-right: 20px;
-            margin-bottom: 20px;
-            margin-top: 20px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            margin-top: 16px;
             overflow: hidden;
         }
 
@@ -119,7 +139,7 @@
             font-family: 'Reckless Neue';
             font-style: italic;
             font-weight: 100;
-            src: local('Reckless Neue'), local('Reckless Neue-ThinItalic'),url(https://gh.uwdesignshow.com/2020/fonts/RN-ThinItalic.woff) format('woff');
+            src: local('Reckless Neue'), local('Reckless Neue-ThinItalic'), url(https://gh.uwdesignshow.com/2020/fonts/RN-ThinItalic.woff) format('woff');
         }
 
         @font-face {
@@ -211,7 +231,7 @@
                     srcSetImageMirror(src, [100, 300, 500, 750, 1000, 1500, 2500, 5000]) +
                     '" class="masonry-content"><a class="overlay" href="https://www.uwdesignshow.com/students/' +
                     itemData
-                    .slug + '">' + itemData.name + '—' + itemData.program + '</a></div></div>';
+                    .slug + '">' + itemData.name + ' — ' + itemData.program + '</a></div></div>';
             }
 
             // Fetch predefined number of images and add it to masonry
