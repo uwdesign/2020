@@ -1,19 +1,13 @@
-<!-- Thipok Cholsaipant 10.59-->
+<!-- UW Design Show, Class of 2020 -->
+<!-- Written by Thipok Cholsaipant -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 
 <head>
     <style>
-        a {
-            text-decoration: none;
-            color: #000cee;
-        }
-
-        a:visited {
-            text-decoration: none;
-            color: #000cee;
-        }
-
+        /* 
+         * Layout
+         */
         div {
             box-sizing: border-box;
         }
@@ -26,7 +20,6 @@
             width: 100vh;
             height: 100vw;
             margin: 0;
-            /* background: #abc; */
             overflow-y: auto;
             overflow-x: hidden;
             /* transform: rotate(90deg) scaleY(-1); */
@@ -46,7 +39,6 @@
             grid-template-columns: repeat(auto-fill, minmax(48vh, 1fr));
             grid-auto-rows: 8vh;
             width: 96vh;
-            /* margin-bottom: 50vw; */
         }
 
         .masonry.buffer {
@@ -56,29 +48,77 @@
             min-height: 25vw;
         }
 
-        .masonry .overlay {
+        /* Items */
+
+        .masonry-item {
+            overflow: hidden;
+            position: relative;
+            transition: all 1s;
+            opacity: 0;
+            width: 48vh;
+            grid-row-end: span 9;
+            /* Assumes landscape photo */
+
+            transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+            transform: translate3d(0, 50px, 0);
+        }
+
+        .masonry-item.portrait {
+            grid-row-end: span 4;
+        }
+
+        .masonry-item.appended {
             opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .masonry-item .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
+            margin-right: 32px;
+            margin: 24px;
+
+            font-family: 'Reckless Neue', 'Times New Roman', serif;
+            font-weight: 100;
+            font-style: italic;
+            font-size: 16pt;
+            text-align: end;
+            width: calc(72vh - 48px);
+
             transition-delay: .5s;
             transition: all 1s;
             transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
             transform-origin: bottom left;
             transform: rotate3d(0, 0, 1, 90deg) translate3d(-100%, 0, 0);
-            font-family: 'Reckless Neue', 'Times New Roman', serif;
-            font-weight: 100;
-            font-style: italic;
-            font-size: 16pt;
-            margin-right: 32px;
-            margin: 24px;
         }
 
-        .masonry-item.appended .overlay {
+        .masonry-item.buffer .overlay {
+            color: #fff;
+            opacity: 1;
+            transition: opacity 1s;
+            transition-delay: 1s;
+        }
+
+        .masonry-item.buffer.appended .overlay {
             opacity: 0;
+            transition: opacity 1s;
+            transition-delay: 1s;
         }
 
-        .masonry-item:hover .overlay {
+        .masonry-item.portrait.appended .overlay {
+            width: calc(32vh - 48px);
+            word-wrap: break-word;
+        }
+
+        /* 
+        .masonry-item.appended:hover img {
+            transform: scale3d(1.02, 1.02, 1);
+        } */
+
+        .masonry-item.appended:hover .overlay {
+            color: #000cee;
+            transition-delay: 0s;
             opacity: 1;
         }
 
@@ -89,29 +129,13 @@
             overflow: hidden;
         }
 
-        .masonry-item {
-            /* background-color: #eee; */
-            overflow: hidden;
-            position: relative;
-            transition: all 1s;
-            opacity: 0;
-            width: 48vh;
-            /* margin: 1vh; */
-            transition-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
-            /* padding: 24px; */
-            transform: translate3d(0, 50px, 0);
-        }
-
         .masonry-item img {
             width: 48vh;
             object-fit: cover;
-            transition: opacity .3s;
-            transition-timing-function: cubic-bezier(.55, .055, .675, .19);
-        }
 
-        .masonry-item.appended {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
+            transition: all .3s;
+            /* transform: scale3d(1, 1, 1); */
+            transition-timing-function: cubic-bezier(.55, .055, .675, .19);
         }
 
         .masonry-item img:hover {
@@ -122,10 +146,14 @@
             grid-row-end: span 3;
         }
 
-        #loadMore {
-            position: fixed;
-            top: 0px;
-            left: 0px;
+        a {
+            text-decoration: none;
+            color: #000cee;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #000cee;
         }
 
         @font-face {
@@ -152,7 +180,7 @@
 </head>
 
 <body>
-    <div class="horizontal-scroll-wrapper">
+    <div class="horizontal-scroll-wrapper" id="hscroll">
         <div class="masonry horizontal-scroll-div" id="masonry">
             <div class="masonry-item stagger"></div>
         </div>
@@ -206,10 +234,9 @@
                 // 8vh per span
                 rowSpan = isLandscape ? 9 : 4;
                 rowHeight = isLandscape ? '72vh' : '32vh';
-
                 $item.height(rowHeight);
                 $img.height(rowHeight);
-                $item.css('gridRowEnd', 'span ' + rowSpan);
+                $item.addClass(isLandscape ? 'landscape' : 'portrait')
             }
 
 
@@ -249,6 +276,13 @@
                 }
             }
 
+            function scroll(element) {
+                setTimeout(() => {$('#hscroll').animate({
+                    scrollTop: $('#masonry').height()
+                }, 750)},1000 )
+                
+            }
+
             function addMsnryItem(item) {
                 $item = $(generateItem(item[0]))
                 $msnrybf.append($item);
@@ -256,16 +290,15 @@
                     var img = event.target;
                     var $item = $(img.parentElement.parentElement);
                     $item.detach()
-                    $item.removeClass('buffer');
-                    $msnry.append($item)
+                    $msnry.append($item);
+                    // $item.removeClass('buffer')
                     resizeGridItem($item, $(img));
                     $item.addClass('appended');
-
                     fetching--;
+                    // scroll()
                 })
                 addedItems.push([item, $item]);
             }
-
 
             // Asynchronously populate json and hiddenItems
             $.getJSON(urlpath + "data/" + urlParams["data"],
