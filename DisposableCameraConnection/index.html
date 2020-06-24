@@ -123,9 +123,9 @@
         }
 
         .image-container {
-            margin-right: 16px;
-            margin-bottom: 16px;
-            margin-top: 16px;
+            margin-right: 2vh;
+            margin-bottom: 2vh;
+            margin-top: 2vh;
             overflow: hidden;
         }
 
@@ -182,7 +182,7 @@
 <body>
     <div class="horizontal-scroll-wrapper" id="hscroll">
         <div class="masonry horizontal-scroll-div" id="masonry">
-            <div class="masonry-item stagger"></div>
+            <!-- <div class="masonry-item stagger"></div> -->
         </div>
         <div class="masonry buffer" id="masonry-buffer"></div>
     </div>
@@ -276,9 +276,9 @@
                 }
             }
 
-            function scroll(element) {
-                setTimeout(() => {$('#hscroll').animate({
-                    scrollTop: $('#masonry').height()
+            function scroll(element, travel) {
+                setTimeout(() => {$(element).animate({
+                    scrollTop: travel
                 }, 750)},1000 )
                 
             }
