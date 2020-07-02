@@ -1,4 +1,6 @@
-[← back to Main Repository](https://gh.uwdesignshow.com/)
+[← Private ocumentation](https://github.com/uwdesign/documentation/wiki)
 
-## Visual Telephone Tag
-[GitHub Pages](https://gh.uwdesignshow.com/2020/VisualTelephoneTag/)
+## Live GitHub Pages
+[Visual Telephone Tag](https://gh.uwdesignshow.com/2020/VisualTelephoneTag/)
+[DisposableCameraConnection](https://gh.uwdesignshow.com/2020/DisposableCameraConnection/)
+[Reveal](https://gh.uwdesignshow.com/2020/Reveal/)
